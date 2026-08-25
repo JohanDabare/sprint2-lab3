@@ -61,4 +61,19 @@ public class MainTest {
             System.setOut(originalOut);
         }
     }
+
+    @Test
+    public void testMainProducesOutput() {
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(output));
+
+        try {
+            Main.main(new String[]{});
+
+            assertFalse(output.toString().isEmpty());
+        } finally {
+            System.setOut(originalOut);
+        }
+    }
 }
